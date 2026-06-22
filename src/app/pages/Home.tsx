@@ -26,12 +26,6 @@ const capabilities = [
   },
 ];
 
-const talks = [
-  { name: 'TEDx João Pessoa' },
-  { name: 'UXDX' },
-  { name: 'Interaction Latin America (IxDA)' },
-];
-
 export function Home() {
   return (
     <div className="pt-20">
@@ -120,49 +114,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* Talks & Publications Section */}
-      <section id="talks" className="py-32 px-8 bg-primary text-primary-foreground">
-        <div className="max-w-[1400px] mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-5xl md:text-6xl mb-20"
-          >
-            Talks &amp; Publications
-          </motion.h2>
-          <div className="grid gap-16 md:grid-cols-2 md:gap-12">
-            <div className="space-y-8">
-              <h3 className="text-3xl md:text-4xl font-medium">Speaking</h3>
-              <div className="space-y-6">
-                {talks.map((talk, i) => (
-                  <div key={talk.name} className="flex items-start gap-4">
-                    <span className="text-xl font-medium text-white/40 tabular-nums mt-1">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <div>
-                      <p className="text-2xl md:text-3xl">{talk.name}</p>
-                      <p className="text-white/60 mt-2">
-                        Speaker and contributor across design, product and innovation communities.
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="space-y-8">
-              <h3 className="text-3xl md:text-4xl font-medium">Publications</h3>
-              <div className="border-t border-white/10 pt-6">
-                <p className="text-2xl md:text-3xl">PING Media Coverage</p>
-                <p className="text-white/60 mt-3 text-lg md:text-xl leading-relaxed">
-                  Media coverage and design community contributions related to PING — an assistive
-                  technology helping blind people administer medication independently.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
