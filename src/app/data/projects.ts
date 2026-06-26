@@ -58,6 +58,9 @@ import startupkitHeader from '../../imports/startupkit-header.png';
 import startupkitHero from '../../imports/project-startupkit-hero.webp';
 import startupkitBrandSystem from '../../imports/project-startupkit-brand-system.webp';
 
+// Espremedor de Papel imports
+import espremedorImg from '../../imports/espremedor.png';
+
 export interface MetricsItem {
   value: string;
   label: string;
@@ -185,6 +188,7 @@ export const projects: Project[] = [
     role: 'Creator · Product Strategist · Service Designer · Facilitator',
     tags: ['Product Strategy & Leadership', 'Selected work', 'Signature Framework'],
     summary: 'A custom co-creation framework applied in 30+ projects across 10 industries, helping organizations transform ideas into validated products, services and business strategies.',
+    cardImage: espremedorImg,
     content: [
       {
         type: 'video',

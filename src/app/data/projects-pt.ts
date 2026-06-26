@@ -1,6 +1,8 @@
 import type { Project, MetricsItem, LinkItem } from './projects';
 
-// Espremedor de Papel imports (no images for this case)
+// Espremedor de Papel imports
+import espremedorImg from '../../imports/espremedor.png';
+
 // Realio imports
 import realioImg01 from '../../imports/case-realio-img-01.png';
 import realioImg02 from '../../imports/case-realio-img-02.png';
@@ -127,6 +129,7 @@ export const projectsPt: Project[] = [
     role: 'Criador · Estrategista de Produto · Designer de Serviço · Facilitador',
     tags: ['Product Strategy & Leadership', 'Selected work', 'Signature Framework'],
     summary: 'Um framework de cocriação aplicado em mais de 30 projetos em 10 indústrias, ajudando organizações a transformar ideias em produtos, serviços e estratégias de negócio validados.',
+    cardImage: espremedorImg,
     content: [
       {
         type: 'video',

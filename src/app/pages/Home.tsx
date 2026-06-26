@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Link, useLocation } from 'react-router';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useProjects } from '../data/useProjects';
 
 const FILTER_TAGS = [
@@ -47,6 +47,8 @@ export function Home() {
   const isPt = location.pathname.startsWith('/br');
   const projects = useProjects();
   const [activeTag, setActiveTag] = useState('Selected work');
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
   const linkPrefix = isPt ? '/br' : '';
 
   const tagScrollRef = useRef<HTMLDivElement>(null);
@@ -55,9 +57,26 @@ export function Home() {
     ? projects
     : projects.filter((p) => p.tags.includes(activeTag));
 
-  const scrollTags = () => {
+  const updateScrollButtons = () => {
+    const el = tagScrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 10);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+  };
+
+  const scrollTagsRight = () => {
     tagScrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
   };
+
+  const scrollTagsLeft = () => {
+    tagScrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    updateScrollButtons();
+    window.addEventListener('resize', updateScrollButtons);
+    return () => window.removeEventListener('resize', updateScrollButtons);
+  }, []);
 
   return (
     <div className="pt-20">
@@ -109,6 +128,7 @@ export function Home() {
           <div className="relative mb-16">
             <div
               ref={tagScrollRef}
+              onScroll={updateScrollButtons}
               className="overflow-x-auto no-scrollbar"
             >
               <div className="flex gap-3 min-w-max pb-2">
@@ -130,13 +150,24 @@ export function Home() {
                 ))}
               </div>
             </div>
-            <button
-              onClick={scrollTags}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm shadow-md rounded-full p-2 hover:bg-white transition-all duration-200"
-              aria-label="Scroll tags"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+            {canScrollLeft && (
+              <button
+                onClick={scrollTagsLeft}
+                className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm shadow-md rounded-full p-2 hover:bg-white transition-all duration-200"
+                aria-label="Scroll tags left"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+            )}
+            {canScrollRight && (
+              <button
+                onClick={scrollTagsRight}
+                className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm shadow-md rounded-full p-2 hover:bg-white transition-all duration-200"
+                aria-label="Scroll tags right"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            )}
           </div>
 
           <motion.h2
