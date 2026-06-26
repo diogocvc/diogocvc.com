@@ -1,9 +1,12 @@
 import { motion } from 'motion/react';
 import { Copy, Check } from 'lucide-react';
 import { useState } from 'react';
+import { useLocation } from 'react-router';
 
 export function Footer() {
   const [copied, setCopied] = useState(false);
+  const location = useLocation();
+  const isPt = location.pathname.startsWith('/br');
 
   const handleCopyEmail = () => {
     const email = 'diogocvc@gmail.com';
@@ -36,12 +39,14 @@ export function Footer() {
           className="space-y-12"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl max-w-4xl">
-            Available for freelance, long-term projects and full-time opportunities
+            {isPt
+              ? 'Disponível para freelances, projetos de longo prazo e oportunidades em tempo integral'
+              : 'Available for freelance, long-term projects and full-time opportunities'}
           </h2>
 
           <div className="space-y-6">
             <div>
-              <p className="text-white/50 text-sm mb-2">Email</p>
+              <p className="text-white/50 text-sm mb-2">{isPt ? 'Email' : 'Email'}</p>
               <div className="flex items-center gap-3">
                 <a
                   href="mailto:diogocvc@gmail.com"
@@ -64,7 +69,7 @@ export function Footer() {
             </div>
 
             <div>
-              <p className="text-white/50 text-sm mb-3">Connect</p>
+              <p className="text-white/50 text-sm mb-3">{isPt ? 'Conecte-se' : 'Connect'}</p>
               <div className="flex flex-wrap gap-6">
                 <a
                   href="https://www.linkedin.com/in/diogocvc/"
@@ -95,7 +100,9 @@ export function Footer() {
           </div>
 
           <div className="pt-12 border-t border-white/10 text-white/40 text-sm">
-            &copy; {new Date().getFullYear()} Diogo Carvalho. All rights reserved.
+            {isPt
+              ? `© ${new Date().getFullYear()} Diogo Carvalho. Todos os direitos reservados.`
+              : `© ${new Date().getFullYear()} Diogo Carvalho. All rights reserved.`}
           </div>
         </motion.div>
       </div>

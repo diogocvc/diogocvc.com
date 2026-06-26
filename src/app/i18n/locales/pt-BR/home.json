@@ -1,0 +1,30 @@
+{
+  "hero": {
+    "line1": "Designer Sênior",
+    "line2": "&amp; Líder de Produto",
+    "line3": "criando produtos da ideação ao lançamento",
+    "description": "Mais de 20 anos em design de produto, liderança de design e experiências orientadas por marca",
+    "cta": "Saiba mais"
+  },
+  "capabilities": "Capacidades",
+  "cap1": {
+    "title": "Liderança de Produto",
+    "description": "Construir e escalar produtos, equipes e sistemas operacionais do conceito ao lançamento."
+  },
+  "cap2": {
+    "title": "Estratégia de Produto",
+    "description": "Conectar necessidades dos usuários, objetivos de negócio e execução."
+  },
+  "cap3": {
+    "title": "Gestão de Produto",
+    "description": "Transformar ideias em produtos através de pesquisa, priorização e planejamento estratégico."
+  },
+  "cap4": {
+    "title": "Sistemas de Marca",
+    "description": "Criar estruturas de comunicação que tornam ideias complexas compreensíveis e escaláveis."
+  },
+  "cap5": {
+    "title": "Design de Serviço & Negócios",
+    "description": "Projetar produtos além do software através de serviços, operações e modelos de negócio."
+  }
+}

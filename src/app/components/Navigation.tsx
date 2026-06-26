@@ -1,9 +1,12 @@
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  const isPt = location.pathname.startsWith('/br');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +24,13 @@ export function Navigation() {
     }
   };
 
+  const toggleLocale = () => {
+    const newPath = isPt
+      ? location.pathname.replace(/^\/br/, '') || '/'
+      : `/br${location.pathname}`;
+    window.location.href = newPath;
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -34,17 +44,17 @@ export function Navigation() {
           Diogo Carvalho
         </Link>
         <div className="flex items-center gap-6">
-          <Link
-            to="/about"
-            className="text-sm hover:opacity-60 transition-opacity"
+          <button
+            onClick={toggleLocale}
+            className="text-sm hover:opacity-60 transition-opacity font-medium"
           >
-            About
-          </Link>
+            {isPt ? 'EN' : 'PT'}
+          </button>
           <button
             onClick={handleContactClick}
             className="bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm hover:opacity-90 transition-all duration-300"
           >
-            Contact
+            {isPt ? 'Contato' : 'Contact'}
           </button>
         </div>
       </div>

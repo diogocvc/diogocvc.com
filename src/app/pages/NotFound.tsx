@@ -1,23 +1,24 @@
-import { Link } from 'react-router';
-import { motion } from 'motion/react';
+import { Link, useLocation } from 'react-router';
 
 export function NotFound() {
+  const location = useLocation();
+  const isPt = location.pathname.startsWith('/br');
+  const linkPrefix = isPt ? '/br' : '';
+
   return (
     <div className="min-h-screen flex items-center justify-center px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center space-y-6"
-      >
-        <h1 className="text-8xl md:text-9xl">404</h1>
-        <p className="text-2xl md:text-3xl text-black/60">Page not found</p>
+      <div className="text-center max-w-2xl">
+        <h1 className="text-8xl md:text-9xl font-medium tracking-tight mb-6">404</h1>
+        <p className="text-2xl text-black/60 mb-8">
+          {isPt ? 'Página não encontrada' : 'Page not found'}
+        </p>
         <Link
-          to="/"
-          className="inline-block bg-[#030213] text-white px-8 py-4 rounded-full hover:bg-[#030213]/90 transition-all duration-300"
+          to={linkPrefix || '/'}
+          className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full hover:opacity-90 transition-all duration-300"
         >
-          Return Home
+          {isPt ? 'Voltar ao início' : 'Return to home'}
         </Link>
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,28 @@
+{
+  "siteName": "Diogo Carvalho",
+  "contact": "Contact",
+  "en": "EN",
+  "pt": "PT",
+  "footer": {
+    "available": "Available for freelance, long-term projects and full-time opportunities",
+    "email": "Email",
+    "connect": "Connect",
+    "rights": "© {{year}} Diogo Carvalho. All rights reserved."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "return": "Return to home"
+  },
+  "project": {
+    "notFound": "Project not found",
+    "returnHome": "Return to home",
+    "year": "Year",
+    "role": "Role",
+    "client": "Client",
+    "company": "Company",
+    "period": "Period",
+    "previous": "Previous",
+    "next": "Next",
+    "backToHome": "Back to Home"
+  }
+}

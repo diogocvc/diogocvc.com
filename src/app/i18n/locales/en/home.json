@@ -1,0 +1,30 @@
+{
+  "hero": {
+    "line1": "Senior Designer",
+    "line2": "&amp; Product Leader",
+    "line3": "building products from ideation to launch",
+    "description": "20+ years across product design, design leadership and brand-driven experiences",
+    "cta": "Learn more"
+  },
+  "capabilities": "Capabilities",
+  "cap1": {
+    "title": "Product Leadership",
+    "description": "Building and scaling products, teams and operational systems from concept to launch."
+  },
+  "cap2": {
+    "title": "Product Strategy",
+    "description": "Connecting user needs, business goals and execution."
+  },
+  "cap3": {
+    "title": "Product Management",
+    "description": "Transforming ideas into products through research, prioritization and strategic planning."
+  },
+  "cap4": {
+    "title": "Brand Systems",
+    "description": "Creating communication frameworks that help complex ideas become understandable and scalable."
+  },
+  "cap5": {
+    "title": "Service & Business Design",
+    "description": "Designing products beyond software through services, operations and business models."
+  }
+}

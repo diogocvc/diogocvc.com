@@ -5,6 +5,19 @@ import { About } from "./pages/About";
 import { CaseStudy } from "./pages/CaseStudy";
 import { NotFound } from "./pages/NotFound";
 
+const caseIds = [
+  "realio",
+  "espremedor-de-papel",
+  "unifyre",
+  "trst",
+  "cartesi",
+  "ping",
+  "opslock",
+  "circuito-mangabeira",
+  "emurgo",
+  "startup-kit",
+];
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -12,14 +25,21 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "about", Component: About },
-      { path: "work/realio", Component: () => <CaseStudy projectId="realio" /> },
-      { path: "work/unifyre", Component: () => <CaseStudy projectId="unifyre" /> },
-      { path: "work/trst", Component: () => <CaseStudy projectId="trst" /> },
-      { path: "work/cartesi", Component: () => <CaseStudy projectId="cartesi" /> },
-      { path: "work/ping", Component: () => <CaseStudy projectId="ping" /> },
-      { path: "work/opslock", Component: () => <CaseStudy projectId="opslock" /> },
-      { path: "work/circuito-mangabeira", Component: () => <CaseStudy projectId="circuito-mangabeira" /> },
-      { path: "work/emurgo", Component: () => <CaseStudy projectId="emurgo" /> },
+      ...caseIds.map((id) => ({
+        path: `work/${id}`,
+        Component: () => <CaseStudy projectId={id} />,
+      })),
+      {
+        path: "br",
+        children: [
+          { index: true, Component: Home },
+          { path: "sobre", Component: About },
+          ...caseIds.map((id) => ({
+            path: `work/${id}`,
+            Component: () => <CaseStudy projectId={id} />,
+          })),
+        ],
+      },
       { path: "*", Component: NotFound },
     ],
   },
