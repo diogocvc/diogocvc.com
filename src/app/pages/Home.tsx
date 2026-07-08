@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Link, useLocation } from 'react-router';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '../components/ui/button';
+import { Badge } from '../components/ui/badge';
 import { useProjects } from '../data/useProjects';
 
 const FILTER_TAGS = [
@@ -89,35 +91,34 @@ export function Home() {
             transition={{ duration: 0.8, ease: [0.6, 0.01, 0.05, 0.95] }}
             className="space-y-8"
           >
-            <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.95] tracking-tight">
+            <h1 className="text-hero leading-display tracking-display font-medium">
               {isPt ? (
                 <>
                   Designer Sênior<br />&amp; Líder de Produto<br />
-                  <span className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black/60">
+                  <span className="text-h2 text-muted-foreground">
                     criando produtos da ideação ao lançamento
                   </span>
                 </>
               ) : (
                 <>
                   Senior Designer<br />&amp; Product Leader<br />
-                  <span className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black/60">
+                  <span className="text-h2 text-muted-foreground">
                     building products from ideation to launch
                   </span>
                 </>
               )}
             </h1>
-            <p className="text-xl md:text-2xl lg:text-3xl text-black/60 max-w-4xl">
+            <p className="text-body-lg text-muted-foreground max-w-4xl">
               {isPt
                 ? 'Mais de 20 anos em design de produto, liderança de design e experiências orientadas por marca'
                 : '20+ years across product design, design leadership and brand-driven experiences'}
             </p>
-            <Link
-              to={isPt ? '/br/sobre' : '/about'}
-              className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-full hover:opacity-90 transition-all duration-300 hover:gap-5"
-            >
-              <span>{isPt ? 'Saiba mais' : 'Learn more'}</span>
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <Button asChild variant="accent" size="lg" className="rounded-full px-8 py-6 text-body-lg shadow-sm">
+              <Link to={isPt ? '/br/sobre' : '/about'}>
+                <span>{isPt ? 'Saiba mais' : 'Learn more'}</span>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
           </motion.div>
         </div>
       </section>
@@ -125,6 +126,8 @@ export function Home() {
       {/* Selected Work Section */}
       <section id="selected-work" className="py-32 px-8">
         <div className="max-w-[1400px] mx-auto">
+          <span className="eyebrow mb-6">{isPt ? 'Projetos' : 'Projects'}</span>
+
           <div className="relative mb-16">
             <div
               ref={tagScrollRef}
@@ -138,10 +141,10 @@ export function Home() {
                     onClick={() => setActiveTag(tag)}
                     className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                       tag === activeTag
-                        ? 'bg-primary text-primary-foreground'
+                        ? 'bg-accent text-surface-0'
                         : tag === 'Signature Framework'
-                          ? 'bg-black/5 text-black ring-1 ring-black/20 hover:ring-black/40'
-                          : 'bg-black/5 text-black/70 hover:bg-black/10'
+                          ? 'bg-muted text-foreground ring-1 ring-border hover:ring-foreground/40'
+                          : 'bg-muted text-muted-foreground hover:bg-secondary'
                     }`}
                   >
                     {tag === 'Signature Framework' && activeTag !== tag ? '✦ ' : ''}
@@ -153,7 +156,7 @@ export function Home() {
             {canScrollLeft && (
               <button
                 onClick={scrollTagsLeft}
-                className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm shadow-md rounded-full p-2 hover:bg-white transition-all duration-200"
+                className="absolute left-0 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md shadow-md rounded-full p-2 hover:bg-card transition-all duration-200"
                 aria-label="Scroll tags left"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -162,7 +165,7 @@ export function Home() {
             {canScrollRight && (
               <button
                 onClick={scrollTagsRight}
-                className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm shadow-md rounded-full p-2 hover:bg-white transition-all duration-200"
+                className="absolute right-0 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md shadow-md rounded-full p-2 hover:bg-card transition-all duration-200"
                 aria-label="Scroll tags right"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -174,7 +177,7 @@ export function Home() {
             key={activeTag}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-6xl mb-20"
+            className="text-h1 mb-20"
           >
             {activeTag}
           </motion.h2>
@@ -186,7 +189,7 @@ export function Home() {
           </div>
 
           {filteredProjects.length === 0 && (
-            <p className="text-lg text-black/50 text-center py-20">
+            <p className="text-body text-muted-foreground text-center py-20">
               {isPt ? 'Nenhum projeto encontrado para esta tag.' : 'No projects found for this tag.'}
             </p>
           )}
@@ -194,17 +197,19 @@ export function Home() {
       </section>
 
       {/* Capabilities Section */}
-      <section id="capabilities" className="py-32 px-8 bg-primary text-primary-foreground">
+      <section id="capabilities" className="py-32 px-8 bg-card text-card-foreground">
         <div className="max-w-[1400px] mx-auto">
+          <span className="eyebrow mb-6">{isPt ? 'O que eu faço' : 'What I do'}</span>
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl md:text-6xl mb-20"
+            className="text-h1 mb-20"
           >
             {isPt ? 'Capacidades' : 'Capabilities'}
           </motion.h2>
-          <div className="flex flex-col divide-y divide-white/10">
+          <div className="flex flex-col divide-y divide-border">
             {capabilities.map((cap, i) => (
               <motion.div
                 key={cap.title}
@@ -214,13 +219,13 @@ export function Home() {
                 transition={{ delay: i * 0.1 }}
                 className="grid gap-4 py-12 first:pt-0 last:pb-0 md:grid-cols-[80px_1fr_2fr] md:py-16"
               >
-                <span className="text-2xl font-medium text-white/40 tabular-nums">
+                <span className="text-2xl font-medium text-muted-foreground tabular-nums">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <h3 className="text-3xl md:text-4xl font-medium">
+                <h3 className="text-h3" style={{ color: 'inherit' }}>
                   {cap.title}
                 </h3>
-                <p className="text-lg md:text-xl text-white/60 leading-relaxed">
+                <p className="text-body-lg text-muted-foreground leading-relaxed">
                   {cap.description}
                 </p>
               </motion.div>
@@ -233,7 +238,7 @@ export function Home() {
 }
 
 interface ProjectCardProps {
-  project: typeof projects extends (infer U)[] ? U : never;
+  project: ReturnType<typeof useProjects>[number];
   index: number;
   linkPrefix: string;
 }
@@ -252,7 +257,7 @@ function ProjectCard({ project, index, linkPrefix }: ProjectCardProps) {
       >
         <div className="space-y-8">
           {(project.cardImage || project.coverImage) && (
-            <div className="aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
+            <div className="aspect-[16/9] bg-muted rounded-xl overflow-hidden shadow-sm transition-shadow duration-200 group-hover:shadow-md">
               <motion.img
                 src={project.cardImage || project.coverImage}
                 alt={project.title}
@@ -265,25 +270,22 @@ function ProjectCard({ project, index, linkPrefix }: ProjectCardProps) {
 
           <div className="space-y-4">
             {project.client && (
-              <p className="text-sm text-black/40 uppercase tracking-widest">
+              <p className="text-small text-muted-foreground uppercase tracking-widest">
                 {project.client}
               </p>
             )}
-            <h3 className="text-4xl md:text-5xl lg:text-6xl group-hover:opacity-60 transition-opacity">
+            <h3 className="text-h1 group-hover:opacity-60 transition-opacity">
               {project.title}
             </h3>
-            <p className="text-lg md:text-xl text-black/60 max-w-3xl">
+            <p className="text-body-lg text-muted-foreground max-w-3xl">
               {project.subtitle || project.summary}
             </p>
 
             <div className="flex flex-wrap gap-3 pt-4">
               {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-4 py-2 bg-black/5 rounded-full text-sm"
-                >
+                <Badge key={tag} variant="secondary">
                   {tag}
-                </span>
+                </Badge>
               ))}
             </div>
           </div>

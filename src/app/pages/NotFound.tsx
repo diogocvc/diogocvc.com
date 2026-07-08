@@ -9,7 +9,7 @@ export function NotFound() {
     <div className="min-h-screen flex items-center justify-center px-8">
       <div className="text-center max-w-2xl">
         <h1 className="text-8xl md:text-9xl font-medium tracking-tight mb-6">404</h1>
-        <p className="text-2xl text-black/60 mb-8">
+        <p className="text-2xl text-foreground/60 mb-8">
           {isPt ? 'Página não encontrada' : 'Page not found'}
         </p>
         <Link

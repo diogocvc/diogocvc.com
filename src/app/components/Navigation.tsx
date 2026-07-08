@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router';
 import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
+import { Button } from './ui/button';
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,12 +51,13 @@ export function Navigation() {
           >
             {isPt ? 'EN' : 'PT'}
           </button>
-          <button
+          <Button
+            variant="accent"
             onClick={handleContactClick}
-            className="bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm hover:opacity-90 transition-all duration-300"
+            className="rounded-full px-6 py-3 text-sm"
           >
             {isPt ? 'Contato' : 'Contact'}
-          </button>
+          </Button>
         </div>
       </div>
     </motion.nav>

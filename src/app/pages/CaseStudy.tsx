@@ -2,6 +2,8 @@ import { motion } from 'motion/react';
 import { Link, useLocation } from 'react-router';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useEffect } from 'react';
+import { Button } from '../components/ui/button';
+import { Badge } from '../components/ui/badge';
 import { useProject, useNextProject, usePreviousProject } from '../data/useProjects';
 import type { ContentSection, TextSection, VideoSection, MetricsSection, ChipsSection, LinksSection } from '../data/projects';
 
@@ -25,8 +27,8 @@ export function CaseStudy({ projectId }: CaseStudyProps) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl mb-4">Project not found</h1>
-          <Link to={linkPrefix || '/'} className="text-blue-600 hover:underline">
+          <h1 className="text-h1 mb-4">Project not found</h1>
+          <Link to={linkPrefix || '/'} className="text-accent hover:underline">
             Return to home
           </Link>
         </div>
@@ -46,55 +48,52 @@ export function CaseStudy({ projectId }: CaseStudyProps) {
             className="space-y-12"
           >
             <div className="space-y-6">
-              <div className="flex flex-wrap gap-8 text-sm text-black/50">
+              <div className="flex flex-wrap gap-8 text-small text-foreground/50">
                 {project.period && (
                   <div>
-                    <span className="block text-xs uppercase tracking-widest mb-1">{isPt ? 'Período' : 'Period'}</span>
-                    <span className="text-black">{project.period}</span>
+                    <span className="block text-caption uppercase tracking-widest mb-1">{isPt ? 'Período' : 'Period'}</span>
+                    <span className="text-foreground">{project.period}</span>
                   </div>
                 )}
                 {project.year && !project.period && (
                   <div>
-                    <span className="block text-xs uppercase tracking-widest mb-1">{isPt ? 'Ano' : 'Year'}</span>
-                    <span className="text-black">{project.year}</span>
+                    <span className="block text-caption uppercase tracking-widest mb-1">{isPt ? 'Ano' : 'Year'}</span>
+                    <span className="text-foreground">{project.year}</span>
                   </div>
                 )}
                 <div>
-                  <span className="block text-xs uppercase tracking-widest mb-1">{isPt ? 'Função' : 'Role'}</span>
-                  <span className="text-black">{project.role}</span>
+                  <span className="block text-caption uppercase tracking-widest mb-1">{isPt ? 'Função' : 'Role'}</span>
+                  <span className="text-foreground">{project.role}</span>
                 </div>
                 {project.client && (
                   <div>
-                    <span className="block text-xs uppercase tracking-widest mb-1">{isPt ? 'Cliente' : 'Client'}</span>
-                    <span className="text-black">{project.client}</span>
+                    <span className="block text-caption uppercase tracking-widest mb-1">{isPt ? 'Cliente' : 'Client'}</span>
+                    <span className="text-foreground">{project.client}</span>
                   </div>
                 )}
                 {project.company && (
                   <div>
-                    <span className="block text-xs uppercase tracking-widest mb-1">{isPt ? 'Empresa' : 'Company'}</span>
-                    <span className="text-black">{project.company}</span>
+                    <span className="block text-caption uppercase tracking-widest mb-1">{isPt ? 'Empresa' : 'Company'}</span>
+                    <span className="text-foreground">{project.company}</span>
                   </div>
                 )}
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] tracking-tight">
+              <h1 className="text-hero leading-display tracking-display font-medium">
                 {project.title}
               </h1>
 
               {project.subtitle && (
-                <p className="text-xl md:text-2xl text-black/60 max-w-4xl leading-relaxed">
+                <p className="text-h4 text-foreground/60 max-w-4xl leading-relaxed">
                   {project.subtitle}
                 </p>
               )}
 
               <div className="flex flex-wrap gap-3">
                 {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-4 py-2 bg-black/5 rounded-full text-sm"
-                  >
+                  <Badge key={tag} variant="secondary">
                     {tag}
-                  </span>
+                  </Badge>
                 ))}
               </div>
             </div>
@@ -110,7 +109,7 @@ export function CaseStudy({ projectId }: CaseStudyProps) {
           transition={{ duration: 1, delay: 0.2 }}
           className="mb-20"
         >
-          <div className="w-full aspect-[21/9] bg-gray-100 overflow-hidden">
+          <div className="w-full aspect-[21/9] bg-muted overflow-hidden shadow-sm">
             <img
               src={project.coverImage}
               alt={project.title}
@@ -126,16 +125,15 @@ export function CaseStudy({ projectId }: CaseStudyProps) {
       ))}
 
       {/* Navigation */}
-      <section className="px-8 mt-32 pt-20 border-t border-black/10">
+      <section className="px-8 mt-32 pt-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex items-center justify-between">
-            <Link
-              to={linkPrefix || '/'}
-              className="group flex items-center gap-3 hover:opacity-60 transition-opacity"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              <span className="text-lg">{isPt ? 'Voltar ao Início' : 'Back to Home'}</span>
-            </Link>
+            <Button variant="ghost" asChild>
+              <Link to={linkPrefix || '/'}>
+                <ArrowLeft className="w-5 h-5" />
+                <span className="text-body-lg">{isPt ? 'Voltar ao Início' : 'Back to Home'}</span>
+              </Link>
+            </Button>
 
             <div className="flex gap-8">
               {previousProject && (
@@ -143,8 +141,8 @@ export function CaseStudy({ projectId }: CaseStudyProps) {
                   to={`${linkPrefix}/work/${previousProject.id}`}
                   className="group space-y-2 hover:opacity-60 transition-opacity"
                 >
-                  <p className="text-sm text-black/40">{isPt ? 'Anterior' : 'Previous'}</p>
-                  <p className="text-lg">{previousProject.title}</p>
+                  <p className="text-small text-foreground/40">{isPt ? 'Anterior' : 'Previous'}</p>
+                  <p className="text-body-lg">{previousProject.title}</p>
                 </Link>
               )}
 
@@ -153,8 +151,8 @@ export function CaseStudy({ projectId }: CaseStudyProps) {
                   to={`${linkPrefix}/work/${nextProject.id}`}
                   className="group space-y-2 hover:opacity-60 transition-opacity md:text-right"
                 >
-                  <p className="text-sm text-black/40">{isPt ? 'Próximo' : 'Next'}</p>
-                  <p className="text-lg">{nextProject.title}</p>
+                  <p className="text-small text-foreground/40">{isPt ? 'Próximo' : 'Next'}</p>
+                  <p className="text-body-lg">{nextProject.title}</p>
                 </Link>
               )}
             </div>
@@ -195,16 +193,16 @@ function TextSectionRenderer({ section, index }: { section: TextSection; index: 
           className="space-y-6"
         >
           {index !== 0 && (
-            <p className="text-sm text-black/40 uppercase tracking-widest font-medium">
+            <p className="text-small text-foreground/40 uppercase tracking-widest font-medium">
               {label}
             </p>
           )}
           {section.title && (
-            <h2 className="text-3xl md:text-4xl">{section.title}</h2>
+            <h2 className="text-h2">{section.title}</h2>
           )}
           {section.content.split('\n').map((paragraph, i) => (
             paragraph.trim() ? (
-              <p key={i} className="text-lg md:text-xl text-black/70 leading-relaxed">
+              <p key={i} className="text-body-lg text-foreground/60 leading-relaxed">
                 {paragraph}
               </p>
             ) : null
@@ -228,8 +226,8 @@ function TextSectionRenderer({ section, index }: { section: TextSection; index: 
               className={`${
                 section.images!.length === 1
                   ? 'w-full aspect-[21/9]'
-                  : 'aspect-[16/9] rounded-lg overflow-hidden'
-              } bg-gray-100`}
+                  : 'aspect-[16/9] rounded-xl overflow-hidden shadow-sm'
+              } bg-muted`}
             >
               <img
                 src={image}
@@ -254,7 +252,7 @@ function VideoSectionRenderer({ section }: { section: VideoSection }) {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8 }}
         >
-          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+          <div className="relative w-full rounded-xl overflow-hidden shadow-sm" style={{ paddingBottom: '56.25%' }}>
             <iframe
               src={section.url}
               className="absolute top-0 left-0 w-full h-full"
@@ -264,7 +262,7 @@ function VideoSectionRenderer({ section }: { section: VideoSection }) {
             />
           </div>
           {section.title && (
-            <h2 className="text-3xl md:text-4xl mt-8">{section.title}</h2>
+            <h2 className="text-h2 mt-8">{section.title}</h2>
           )}
         </motion.div>
       </div>
@@ -281,7 +279,7 @@ function MetricsSectionRenderer({ section }: { section: MetricsSection }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl md:text-6xl mb-20"
+            className="text-h1 mb-20"
           >
             {section.title}
           </motion.h2>
@@ -296,14 +294,14 @@ function MetricsSectionRenderer({ section }: { section: MetricsSection }) {
               transition={{ delay: i * 0.1 }}
               className="space-y-4"
             >
-              <p className="text-5xl md:text-6xl font-medium tracking-tight">
+              <p className="text-h1 tracking-tight">
                 {item.value}
               </p>
-              <p className="text-lg font-medium text-black/80">
+              <p className="text-h4 text-foreground/80">
                 {item.label}
               </p>
               {item.sublabel && (
-                <p className="text-base text-black/50 leading-relaxed">
+                <p className="text-body text-foreground/50 leading-relaxed">
                   {item.sublabel}
                 </p>
               )}
@@ -324,7 +322,7 @@ function ChipsSectionRenderer({ section }: { section: ChipsSection }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl mb-10"
+            className="text-h2 mb-10"
           >
             {section.title}
           </motion.h2>
@@ -336,12 +334,9 @@ function ChipsSectionRenderer({ section }: { section: ChipsSection }) {
           className="flex flex-wrap gap-3"
         >
           {section.items.map((item) => (
-            <span
-              key={item}
-              className="px-5 py-3 bg-black/5 rounded-full text-sm"
-            >
+            <Badge key={item} variant="secondary" className="px-5 py-3">
               {item}
-            </span>
+            </Badge>
           ))}
         </motion.div>
       </div>
@@ -358,7 +353,7 @@ function LinksSectionRenderer({ section }: { section: LinksSection }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl mb-10"
+            className="text-h2 mb-10"
           >
             {section.title}
           </motion.h2>
@@ -375,7 +370,7 @@ function LinksSectionRenderer({ section }: { section: LinksSection }) {
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-lg text-blue-600 hover:opacity-60 transition-opacity"
+              className="block text-body-lg text-accent hover:opacity-60 transition-opacity"
             >
               {item.text} &rarr;
             </a>

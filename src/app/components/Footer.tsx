@@ -29,7 +29,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-primary text-primary-foreground py-24 px-8">
+    <footer className="bg-card text-card-foreground border-t border-border py-24 px-8">
       <div className="max-w-[1400px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -38,7 +38,7 @@ export function Footer() {
           transition={{ duration: 0.6 }}
           className="space-y-12"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl max-w-4xl">
+          <h2 className="text-h1 max-w-4xl">
             {isPt
               ? 'Disponível para freelances, projetos de longo prazo e oportunidades em tempo integral'
               : 'Available for freelance, long-term projects and full-time opportunities'}
@@ -46,21 +46,21 @@ export function Footer() {
 
           <div className="space-y-6">
             <div>
-              <p className="text-white/50 text-sm mb-2">{isPt ? 'Email' : 'Email'}</p>
+              <p className="text-small text-muted-foreground mb-2">{isPt ? 'Email' : 'Email'}</p>
               <div className="flex items-center gap-3">
                 <a
                   href="mailto:diogocvc@gmail.com"
-                  className="text-xl hover:opacity-70 transition-opacity"
+                  className="text-h4 text-accent hover:opacity-70 transition-opacity"
                 >
                   diogocvc@gmail.com
                 </a>
                 <button
                   onClick={handleCopyEmail}
-                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  className="p-2 text-accent hover:bg-muted rounded-lg transition-colors"
                   aria-label="Copy email"
                 >
                   {copied ? (
-                    <Check className="w-5 h-5 text-green-400" />
+                    <Check className="w-5 h-5 text-accent" />
                   ) : (
                     <Copy className="w-5 h-5" />
                   )}
@@ -69,13 +69,13 @@ export function Footer() {
             </div>
 
             <div>
-              <p className="text-white/50 text-sm mb-3">{isPt ? 'Conecte-se' : 'Connect'}</p>
+              <p className="text-small text-muted-foreground mb-3">{isPt ? 'Conecte-se' : 'Connect'}</p>
               <div className="flex flex-wrap gap-6">
                 <a
                   href="https://www.linkedin.com/in/diogocvc/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm hover:opacity-70 transition-opacity"
+                  className="text-small text-accent hover:opacity-70 transition-opacity"
                 >
                   LinkedIn
                 </a>
@@ -83,7 +83,7 @@ export function Footer() {
                   href="https://diogocvc.substack.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm hover:opacity-70 transition-opacity"
+                  className="text-small text-accent hover:opacity-70 transition-opacity"
                 >
                   Substack
                 </a>
@@ -91,7 +91,7 @@ export function Footer() {
                   href="https://www.behance.net/diogocvc"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm hover:opacity-70 transition-opacity"
+                  className="text-small text-accent hover:opacity-70 transition-opacity"
                 >
                   Behance
                 </a>
@@ -99,7 +99,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="pt-12 border-t border-white/10 text-white/40 text-sm">
+          <div className="pt-12 border-t border-border text-muted-foreground text-small">
             {isPt
               ? `© ${new Date().getFullYear()} Diogo Carvalho. Todos os direitos reservados.`
               : `© ${new Date().getFullYear()} Diogo Carvalho. All rights reserved.`}

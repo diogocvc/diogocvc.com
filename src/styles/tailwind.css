@@ -10,3 +10,33 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.eyebrow {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s var(--ease-standard), transform 0.5s var(--ease-standard);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,6 +1,8 @@
 import { motion } from 'motion/react';
 import { useLocation } from 'react-router';
 import { Download } from 'lucide-react';
+import { Button } from '../components/ui/button';
+import { Badge } from '../components/ui/badge';
 
 const experience = [
   {
@@ -73,35 +75,35 @@ export function About() {
         >
           {/* Header - Editorial Statement */}
           <div className="space-y-8">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl leading-tight">
+            <h1 className="text-display leading-display tracking-display font-medium">
               {isPt ? (
                 <>Design deve ir<br />além de interfaces.</>
               ) : (
                 <>Design should extend<br />beyond interfaces.</>
               )}
             </h1>
-            <div className="h-px bg-black/10" />
+            <div className="h-px bg-border" />
           </div>
 
           {/* Introduction */}
           <section className="space-y-6">
             {isPt ? (
               <>
-                <p className="text-2xl md:text-3xl leading-relaxed">
+                <p className="text-h3 leading-relaxed text-foreground/80">
                   Sou um designer multidisciplinar com mais de 20 anos de experiência em indústrias como publicidade, branding, design gráfico, design de produtos físicos e digitais, e consultoria em design de negócios.
                 </p>
-                <p className="text-lg md:text-xl text-black/70 leading-relaxed">
+                <p className="text-body-lg text-foreground/60 leading-relaxed">
                   Ao longo da minha carreira, usei muitos chapéus — desde a execução prática de design até a liderança de equipes multifuncionais de design e produto — colaborando com startups, grandes organizações e empresas Web3 ao redor do mundo.
                 </p>
               </>
             ) : (
               <>
-                <p className="text-2xl md:text-3xl leading-relaxed">
+                <p className="text-h3 leading-relaxed text-foreground/80">
                   I&apos;m a multidisciplinary designer with over 20 years of experience across
                   industries such as advertising, branding, graphic design, physical and digital
                   product design, and business design consulting.
                 </p>
-                <p className="text-lg md:text-xl text-black/70 leading-relaxed">
+                <p className="text-body-lg text-foreground/60 leading-relaxed">
                   Throughout my career, I&apos;ve worn many hats — from hands-on design execution
                   to leading cross-functional design and product teams — collaborating with
                   startups, large organizations and Web3 companies around the world.
@@ -112,19 +114,20 @@ export function About() {
 
           {/* Professional Journey */}
           <section className="space-y-12">
-            <h2 className="text-4xl md:text-5xl">
+            <span className="eyebrow">{isPt ? 'Trajetória' : 'Career'}</span>
+            <h2 className="text-h1">
               {isPt ? 'Trajetória Profissional' : 'Professional Journey'}
             </h2>
             <div className="space-y-12">
               {experience.map((exp) => (
                 <div key={exp.company} className="grid gap-2 md:grid-cols-[200px_1fr] md:gap-10">
                   <div>
-                    <p className="text-sm text-black/40 font-medium">{exp.period}</p>
+                    <p className="text-small text-foreground/40 font-medium">{exp.period}</p>
                   </div>
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-medium">{exp.company}</h3>
-                    <p className="text-lg text-black/60 mt-1">{isPt ? exp.rolePt : exp.role}</p>
-                    <p className="text-lg text-black/70 mt-3 leading-relaxed">
+                    <h3 className="text-h3 font-medium">{exp.company}</h3>
+                    <p className="text-body-lg text-foreground/60 mt-1">{isPt ? exp.rolePt : exp.role}</p>
+                    <p className="text-body-lg text-foreground/60 mt-3 leading-relaxed">
                       {isPt ? exp.descriptionPt : exp.description}
                     </p>
                   </div>
@@ -136,29 +139,31 @@ export function About() {
           {/* Education + Philosophy */}
           <section className="grid gap-12 md:grid-cols-2 md:gap-16">
             <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl">{isPt ? 'Formação' : 'Education'}</h2>
+              <span className="eyebrow">{isPt ? 'Formação' : 'Background'}</span>
+              <h2 className="text-h1">{isPt ? 'Formação' : 'Education'}</h2>
               <div className="space-y-3">
-                <p className="text-xl font-medium">
+                <p className="text-h4 font-medium">
                   {isPt ? 'Bacharelado em Design Gráfico' : 'Bachelor Degree in Graphic Design'}
                 </p>
-                <p className="text-lg text-black/70">
+                <p className="text-body-lg text-foreground/60">
                   {isPt ? 'Especialização em Estratégia Digital' : 'Specialization in Digital Strategy'}
                 </p>
-                <p className="text-sm text-black/40 mt-1">
+                <p className="text-small text-foreground/40 mt-1">
                   {isPt ? 'Hyper Island — Suécia' : 'Hyper Island — Sweden'}
                 </p>
               </div>
             </div>
             <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl">
+              <span className="eyebrow">{isPt ? 'Crenças' : 'Beliefs'}</span>
+              <h2 className="text-h1">
                 {isPt ? 'Filosofia de Design' : 'Design Philosophy'}
               </h2>
               {isPt ? (
-                <p className="text-lg text-black/70 leading-relaxed">
+                <p className="text-body-lg text-foreground/60 leading-relaxed">
                   Acredito que o design deve ir além das interfaces. Ao aplicar o design thinking na estratégia de produto, marketing, garantia de qualidade, suporte ao cliente e operações de negócio, é possível criar soluções que geram valor tanto para o usuário quanto para a organização.
                 </p>
               ) : (
-                <p className="text-lg text-black/70 leading-relaxed">
+                <p className="text-body-lg text-foreground/60 leading-relaxed">
                   I believe design should extend beyond interfaces. By applying design thinking
                   across product strategy, marketing, quality assurance, customer support and
                   business operations, it becomes possible to create solutions that generate
@@ -170,16 +175,17 @@ export function About() {
 
           {/* Talks & Community */}
           <section className="space-y-6">
-            <h2 className="text-4xl md:text-5xl">
-              {isPt ? 'Palestras & Comunidade' : 'Talks &amp; Community'}
+            <span className="eyebrow">{isPt ? 'Presença' : 'Presence'}</span>
+            <h2 className="text-h1">
+              {isPt ? 'Palestras & Comunidade' : 'Talks & Community'}
             </h2>
             <div className="space-y-4">
               {['TEDx João Pessoa', 'UXDX', 'Interaction Latin America (IxDA)'].map((talk) => (
-                <p key={talk} className="text-xl text-black/70">
+                <p key={talk} className="text-h4 text-foreground/60">
                   {talk}
                 </p>
               ))}
-              <p className="text-lg text-black/50 mt-4">
+              <p className="text-body-lg text-foreground/40 mt-4">
                 {isPt
                   ? 'Palestrante e colaborador em comunidades de design, produto e inovação.'
                   : 'Speaker and contributor across design, product and innovation communities.'}
@@ -189,44 +195,42 @@ export function About() {
 
           {/* Industries */}
           <section className="space-y-6">
-            <h2 className="text-4xl md:text-5xl">{isPt ? 'Indústrias' : 'Industries'}</h2>
+            <span className="eyebrow">{isPt ? 'Setores' : 'Sectors'}</span>
+            <h2 className="text-h1">{isPt ? 'Indústrias' : 'Industries'}</h2>
             <div className="flex flex-wrap gap-3">
               {industries.map((industry) => (
-                <span
-                  key={industry}
-                  className="px-5 py-3 bg-black/5 rounded-full text-sm"
-                >
+                <Badge key={industry} variant="secondary" className="px-5 py-3 text-small">
                   {industry}
-                </span>
+                </Badge>
               ))}
             </div>
           </section>
 
           {/* Contact */}
           <section className="space-y-6 pt-8">
-            <div className="h-px bg-black/10" />
+            <div className="h-px bg-border" />
             <div className="space-y-8">
-              <h2 className="text-4xl md:text-5xl">
-                {isPt ? 'Vamos Conectar' : 'Let&apos;s Connect'}
+              <h2 className="text-h1">
+                {isPt ? 'Vamos Conectar' : "Let's Connect"}
               </h2>
               <div className="space-y-4">
                 <div>
-                  <p className="text-sm text-black/40 mb-2">Email</p>
+                  <p className="text-small text-foreground/40 mb-2">Email</p>
                   <a
                     href="mailto:diogocvc@gmail.com"
-                    className="text-xl hover:opacity-60 transition-opacity"
+                    className="text-h4 text-accent hover:opacity-60 transition-opacity"
                   >
                     diogocvc@gmail.com
                   </a>
                 </div>
                 <div>
-                  <p className="text-sm text-black/40 mb-3">Links</p>
+                  <p className="text-small text-foreground/40 mb-3">Links</p>
                   <div className="flex flex-col gap-2">
                     <a
                       href="https://www.linkedin.com/in/diogocvc/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-lg hover:opacity-60 transition-opacity"
+                      className="text-body-lg text-accent hover:opacity-60 transition-opacity"
                     >
                       LinkedIn &rarr;
                     </a>
@@ -234,7 +238,7 @@ export function About() {
                       href="https://diogocvc.substack.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-lg hover:opacity-60 transition-opacity"
+                      className="text-body-lg text-accent hover:opacity-60 transition-opacity"
                     >
                       Substack &rarr;
                     </a>
@@ -242,22 +246,23 @@ export function About() {
                       href="https://www.behance.net/diogocvc"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-lg hover:opacity-60 transition-opacity"
+                      className="text-body-lg text-accent hover:opacity-60 transition-opacity"
                     >
                       Behance &rarr;
                     </a>
                   </div>
                 </div>
               </div>
-              <a
-                href="https://drive.google.com/file/d/1NBmwsEah_2700J4FyLqd-fqYuWHUUfG7/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-full hover:opacity-90 transition-all duration-300"
-              >
-                <Download className="w-5 h-5" />
-                <span>{isPt ? 'Baixar CV' : 'Download CV'}</span>
-              </a>
+              <Button asChild variant="accent" size="lg" className="rounded-full px-8 py-6 text-body-lg shadow-sm">
+                <a
+                  href="https://drive.google.com/file/d/1NBmwsEah_2700J4FyLqd-fqYuWHUUfG7/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Download className="w-5 h-5" />
+                  <span>{isPt ? 'Baixar CV' : 'Download CV'}</span>
+                </a>
+              </Button>
             </div>
           </section>
         </motion.div>

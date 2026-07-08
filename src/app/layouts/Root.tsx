@@ -6,7 +6,7 @@ import { LocaleProvider } from '../i18n/LocaleProvider';
 export function Root() {
   return (
     <LocaleProvider>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen">
         <Navigation />
         <Outlet />
         <Footer />
