@@ -5,6 +5,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { useProjects } from '../data/useProjects';
+import { Watcher } from '../components/watcher/Watcher';
 
 const FILTER_TAGS = [
   'Selected work',
@@ -83,8 +84,9 @@ export function Home() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-8 py-20">
-        <div className="max-w-[1400px] w-full">
+      <section className="min-h-screen md:h-screen flex flex-col md:flex-row items-center justify-center px-8 py-20 md:py-0 relative overflow-hidden">
+        <Watcher />
+        <div className="max-w-[1400px] w-full relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
