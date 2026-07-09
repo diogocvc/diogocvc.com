@@ -1,14 +1,14 @@
 import { useRef, useEffect, useState } from 'react';
 
-import frontImg from '../../../imports/watcher/front.png';
-import topImg from '../../../imports/watcher/top.png';
-import bottomImg from '../../../imports/watcher/bottom.png';
-import leftImg from '../../../imports/watcher/left.png';
-import rightImg from '../../../imports/watcher/right.png';
-import topLeftImg from '../../../imports/watcher/top-left.png';
-import topRightImg from '../../../imports/watcher/top-right.png';
-import bottomLeftImg from '../../../imports/watcher/bottom-left.png';
-import bottomRightImg from '../../../imports/watcher/bottom-right.png';
+import frontImg from '@/imports/watcher/front.png';
+import topImg from '@/imports/watcher/top.png';
+import bottomImg from '@/imports/watcher/bottom.png';
+import leftImg from '@/imports/watcher/left.png';
+import rightImg from '@/imports/watcher/right.png';
+import topLeftImg from '@/imports/watcher/top-left.png';
+import topRightImg from '@/imports/watcher/top-right.png';
+import bottomLeftImg from '@/imports/watcher/bottom-left.png';
+import bottomRightImg from '@/imports/watcher/bottom-right.png';
 
 type Sector = 'front' | 'top' | 'bottom' | 'left' | 'right'
   | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
