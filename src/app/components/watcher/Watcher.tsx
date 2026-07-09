@@ -30,8 +30,8 @@ const SECTORS: Sector[] = [
   'left', 'top-left', 'top', 'top-right',
 ];
 
-const CENTER_THRESHOLD = 60;
-const HYSTERESIS_DEG = 10;
+const CENTER_THRESHOLD = 40;
+const HYSTERESIS_DEG = 4;
 
 function angleToSectorIndex(angleDeg: number): number {
   const normalized = ((angleDeg % 360) + 360) % 360;
@@ -74,33 +74,57 @@ function useMediaQuery(query: string): boolean {
   return matches;
 }
 
-function useReducedMotion(): boolean {
-  const [reduced, setReduced] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  });
+export function Watcher() {
+  const imgRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const sectorRef = useRef<Sector>('front');
+  const rectRef = useRef<DOMRect | null>(null);
+  const reducedRef = useRef(false);
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
+    reducedRef.current = mq.matches;
+    if (mq.matches && imgRef.current) {
+      imgRef.current.src = IMAGES.front;
+    }
+    const onMqChange = (e: MediaQueryListEvent) => {
+      reducedRef.current = e.matches;
+      if (e.matches && imgRef.current) {
+        imgRef.current.src = IMAGES.front;
+        sectorRef.current = 'front';
+      }
+    };
+    mq.addEventListener('change', onMqChange);
+    return () => mq.removeEventListener('change', onMqChange);
   }, []);
 
-  return reduced;
-}
-
-export function Watcher() {
-  const imgRef = useRef<HTMLImageElement>(null);
-  const sectorRef = useRef<Sector>('front');
-  const [sector, setSector] = useState<Sector>('front');
-  const isMobile = !useMediaQuery('(min-width: 768px)');
-  const reducedMotion = useReducedMotion();
+  useEffect(() => {
+    const updateRect = () => {
+      if (imgRef.current) {
+        rectRef.current = imgRef.current.getBoundingClientRect();
+      }
+    };
+    updateRect();
+    window.addEventListener('scroll', updateRect, { passive: true });
+    window.addEventListener('resize', updateRect, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', updateRect);
+      window.removeEventListener('resize', updateRect);
+    };
+  }, []);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedRef.current) return;
 
-    if (!isMobile) {
+    const setImg = (s: Sector) => {
+      if (s !== sectorRef.current && imgRef.current) {
+        sectorRef.current = s;
+        imgRef.current.src = IMAGES[s];
+      }
+    };
+
+    if (isDesktop) {
       let mouseX = 0;
       let mouseY = 0;
       let rafId: number;
@@ -111,85 +135,77 @@ export function Watcher() {
       };
 
       const tick = () => {
-        const el = imgRef.current;
-        if (el) {
-          const rect = el.getBoundingClientRect();
+        const rect = rectRef.current;
+        if (rect) {
           const centerX = rect.left + rect.width / 2;
           const centerY = rect.top + rect.height / 2;
-
           const dx = mouseX - centerX;
           const dy = mouseY - centerY;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          let newSector: Sector;
           if (dist < CENTER_THRESHOLD) {
-            newSector = 'front';
+            setImg('front');
           } else {
             const angleDeg = Math.atan2(dy, dx) * (180 / Math.PI);
-            newSector = getSectorFromAngle(angleDeg, sectorRef.current);
-          }
-
-          if (newSector !== sectorRef.current) {
-            sectorRef.current = newSector;
-            setSector(newSector);
+            setImg(getSectorFromAngle(angleDeg, sectorRef.current));
           }
         }
-
         rafId = requestAnimationFrame(tick);
       };
 
       window.addEventListener('mousemove', onMouseMove, { passive: true });
       rafId = requestAnimationFrame(tick);
-
       return () => {
         window.removeEventListener('mousemove', onMouseMove);
         cancelAnimationFrame(rafId);
       };
     } else {
-      let rafId: number;
-      let ticking = false;
+      let lastScrollY = window.scrollY;
+      let idleTimer: ReturnType<typeof setTimeout> | null = null;
 
       const onScroll = () => {
-        if (ticking) return;
-        ticking = true;
+        const scrollY = window.scrollY;
+        const dir = scrollY >= lastScrollY ? 'down' : 'up';
+        lastScrollY = scrollY;
 
-        rafId = requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          let newSector: Sector;
+        if (idleTimer) clearTimeout(idleTimer);
 
-          if (scrollY < 100) newSector = 'top';
-          else if (scrollY <= 350) newSector = 'front';
-          else newSector = 'bottom';
+        setImg(dir === 'down' ? 'bottom' : 'top');
 
-          if (newSector !== sectorRef.current) {
-            sectorRef.current = newSector;
-            setSector(newSector);
+        idleTimer = setTimeout(() => {
+          const el = containerRef.current;
+          if (el) {
+            const r = el.getBoundingClientRect();
+            const visible = r.bottom > 0 && r.top < window.innerHeight;
+            if (visible) {
+              setImg('front');
+            }
           }
-
-          ticking = false;
-        });
+        }, 150);
       };
 
       window.addEventListener('scroll', onScroll, { passive: true });
-
       return () => {
         window.removeEventListener('scroll', onScroll);
-        cancelAnimationFrame(rafId);
+        if (idleTimer) clearTimeout(idleTimer);
       };
     }
-  }, [isMobile, reducedMotion]);
-
-  const displaySector = reducedMotion ? 'front' : sector;
+  }, [isDesktop]);
 
   return (
-    <div className="relative w-full flex justify-center md:absolute md:inset-0 md:pointer-events-none md:z-0 md:flex md:items-center md:justify-end">
+    <div
+      ref={containerRef}
+      className="relative w-full flex justify-center md:absolute md:inset-0 md:pointer-events-none md:z-0 md:flex md:items-center md:justify-end"
+    >
       <img
         ref={imgRef}
-        src={IMAGES[displaySector]}
+        src={IMAGES.front}
         alt=""
         aria-hidden="true"
         draggable={false}
-        className="select-none w-1/2 max-w-[300px] md:w-2/3 md:max-w-[820px] h-auto"
+        width={820}
+        height={820}
+        className="select-none w-full md:w-2/3 md:max-w-[820px] h-auto"
       />
     </div>
   );
