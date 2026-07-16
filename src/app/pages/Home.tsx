@@ -85,7 +85,7 @@ export function Home() {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="min-h-[calc(100dvh-80px)] md:h-[calc(100dvh-80px)] relative overflow-hidden">
-        <div className="mx-auto w-full max-w-[1400px] md:h-full px-8 py-20 md:py-0 flex flex-col md:flex-row items-center">
+        <div className="mx-auto w-full max-w-[1400px] md:h-full px-8 py-20 md:py-0 flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:flex-1 md:self-end py-12 md:py-0">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -117,7 +117,7 @@ export function Home() {
               </p>
               <Button asChild variant="accent" size="lg" className="rounded-full px-8 py-6 text-body-lg shadow-sm">
                 <Link to={isPt ? '/br/sobre' : '/about'}>
-                  <span>{isPt ? 'Saiba mais' : 'Learn more'}</span>
+                  <span className="text-surface-0">{isPt ? 'Saiba mais' : 'Learn more'}</span>
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
