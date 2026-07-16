@@ -195,7 +195,7 @@ export function Watcher() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full flex justify-center md:flex md:items-center md:justify-end"
+      className="relative w-full md:w-auto md:h-full flex justify-center md:items-center"
     >
       <img
         ref={imgRef}
@@ -205,7 +205,7 @@ export function Watcher() {
         draggable={false}
         width={820}
         height={820}
-        className="select-none w-full md:w-2/3 md:max-w-[820px] h-auto"
+        className="select-none w-full md:w-auto md:max-h-full"
       />
     </div>
   );

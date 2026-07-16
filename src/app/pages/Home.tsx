@@ -84,8 +84,8 @@ export function Home() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="min-h-[calc(100dvh-80px)] md:h-[calc(100dvh-80px)] flex flex-col md:grid md:grid-cols-2 items-center gap-12 md:gap-0 px-8 py-20 md:py-0 relative overflow-hidden">
-        <div className="w-full max-w-[600px] md:justify-self-end md:order-first">
+      <section className="min-h-[calc(100dvh-80px)] md:h-[calc(100dvh-80px)] flex flex-col md:flex-row items-center px-8 py-20 md:py-0 relative overflow-hidden">
+        <div className="w-full md:flex-1 flex items-center justify-center md:justify-start py-12 md:py-0">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
