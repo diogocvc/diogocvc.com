@@ -84,45 +84,47 @@ export function Home() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="min-h-[calc(100dvh-80px)] md:h-[calc(100dvh-80px)] flex flex-col md:flex-row items-center px-8 py-20 md:py-0 relative overflow-hidden">
-        <div className="w-full md:flex-1 flex items-center justify-center md:justify-start py-12 md:py-0">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.6, 0.01, 0.05, 0.95] }}
-            className="space-y-8"
-          >
-            <h1 className="text-hero leading-display tracking-display font-medium">
-              {isPt ? (
-                <>
-                  Designer Sênior<br />&amp; Líder de Produto<br />
-                  <span className="text-h2 text-muted-foreground">
-                    criando produtos da ideação ao lançamento
-                  </span>
-                </>
-              ) : (
-                <>
-                  Senior Designer<br />&amp; Product Leader<br />
-                  <span className="text-h2 text-muted-foreground">
-                    building products from ideation to launch
-                  </span>
-                </>
-              )}
-            </h1>
-            <p className="text-body-lg text-muted-foreground max-w-4xl">
-              {isPt
-                ? 'Mais de 20 anos em design de produto, liderança de design e experiências orientadas por marca'
-                : '20+ years across product design, design leadership and brand-driven experiences'}
-            </p>
-            <Button asChild variant="accent" size="lg" className="rounded-full px-8 py-6 text-body-lg shadow-sm">
-              <Link to={isPt ? '/br/sobre' : '/about'}>
-                <span>{isPt ? 'Saiba mais' : 'Learn more'}</span>
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-          </motion.div>
+      <section className="min-h-[calc(100dvh-80px)] md:h-[calc(100dvh-80px)] relative overflow-hidden">
+        <div className="mx-auto w-full max-w-[1400px] md:h-full px-8 py-20 md:py-0 flex flex-col md:flex-row items-center">
+          <div className="w-full md:flex-1 md:self-end py-12 md:py-0">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.6, 0.01, 0.05, 0.95] }}
+              className="space-y-8"
+            >
+              <h1 className="text-hero leading-display tracking-display font-medium">
+                {isPt ? (
+                  <>
+                    Designer Sênior<br />&amp; Líder de Produto<br />
+                    <span className="text-h2 text-muted-foreground">
+                      criando produtos da ideação ao lançamento
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    Senior Designer<br />&amp; Product Leader<br />
+                    <span className="text-h2 text-muted-foreground">
+                      building products from ideation to launch
+                    </span>
+                  </>
+                )}
+              </h1>
+              <p className="text-body-lg text-muted-foreground max-w-4xl">
+                {isPt
+                  ? 'Mais de 20 anos em design de produto, liderança de design e experiências orientadas por marca'
+                  : '20+ years across product design, design leadership and brand-driven experiences'}
+              </p>
+              <Button asChild variant="accent" size="lg" className="rounded-full px-8 py-6 text-body-lg shadow-sm">
+                <Link to={isPt ? '/br/sobre' : '/about'}>
+                  <span>{isPt ? 'Saiba mais' : 'Learn more'}</span>
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+          <Watcher />
         </div>
-        <Watcher />
       </section>
 
       {/* Selected Work Section */}
