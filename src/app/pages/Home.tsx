@@ -117,8 +117,7 @@ export function Home() {
               </p>
             <Button asChild variant="accent" size="lg" className="rounded-full px-8 py-6 text-body-lg shadow-sm mb-8">
               <Link to={isPt ? '/br/sobre' : '/about'}>
-                <span>{isPt ? 'Saiba mais' : 'Learn more'}</span>
-                <ArrowRight className="w-5 h-5 text-surface-0 transition-transform group-hover:translate-x-1" />
+                <span className="text-surface-0">{isPt ? 'Saiba mais' : 'Learn more'}</span>
               </Link>
             </Button>
             </motion.div>
