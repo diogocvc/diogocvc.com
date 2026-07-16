@@ -84,9 +84,8 @@ export function Home() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="min-h-screen md:h-screen flex flex-col md:flex-row items-center justify-center px-8 py-20 md:py-0 relative overflow-hidden">
-        <Watcher />
-        <div className="max-w-[1400px] w-full relative z-10">
+      <section className="min-h-[calc(100dvh-80px)] md:h-[calc(100dvh-80px)] flex flex-col md:grid md:grid-cols-2 items-center gap-12 md:gap-0 px-8 py-20 md:py-0 relative overflow-hidden">
+        <div className="w-full max-w-[600px] md:justify-self-end md:order-first">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -123,6 +122,7 @@ export function Home() {
             </Button>
           </motion.div>
         </div>
+        <Watcher />
       </section>
 
       {/* Selected Work Section */}

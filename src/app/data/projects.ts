@@ -552,10 +552,8 @@ export const projects: Project[] = [
     coverImage: emurgo01,
     content: [
       {
-        type: 'text',
-        title: 'Design Approach',
-        content: 'The website needed to communicate complex blockchain technology in an accessible way while maintaining credibility with technical audiences.',
-        images: [emurgo01],
+        type: 'video',
+        url: 'https://player.vimeo.com/video/278812370',
       },
     ],
   },
@@ -606,13 +604,13 @@ export const projects: Project[] = [
       {
         type: 'text',
         title: 'The Product',
-        content: 'Startup Kit packaged multiple specialized services into a single product designed for startup founders.\n\nRather than purchasing branding, websites or animations separately, clients received a structured offering tailored to launch and growth.\n\nTypical engagements included:\n\nBrand identity\nVisual system\nMarketing website\nProduct messaging\nExplainer animation\nInvestor communication assets\nLaunch support\n\nThis productized approach simplified decision-making for founders while enabling our team to deliver a more consistent and scalable experience.',
+        content: 'Startup Kit packaged multiple specialized services into a single product designed for startup founders.\n\nRather than purchasing branding, websites or animations separately, clients received a structured offering tailored to launch and growth.\n\nTypical engagements included:\n\n• Brand identity\n• Visual system\n• Marketing website\n• Product messaging\n• Explainer animation\n• Investor communication assets\n• Launch support\n\nThis productized approach simplified decision-making for founders while enabling our team to deliver a more consistent and scalable experience.',
         images: [startupkitBrandSystem],
       },
       {
         type: 'text',
         title: 'My Role',
-        content: 'As co-founder, I helped shape both the business strategy and the product itself.\n\nMy responsibilities included:\n\nIdentifying the market opportunity.\nDefining the productized service model.\nStructuring the customer journey.\nLeading product and communication strategy.\nDesigning client solutions.\nLeading multidisciplinary design teams.\nEnsuring quality across branding, UX and digital experiences.\n\nThe role combined entrepreneurship, product thinking, design leadership and hands-on execution.',
+        content: 'As co-founder, I helped shape both the business strategy and the product itself.\n\nMy responsibilities included:\n\n• Identifying the market opportunity.\n• Defining the productized service model.\n• Structuring the customer journey.\n• Leading product and communication strategy.\n• Designing client solutions.\n• Leading multidisciplinary design teams.\n• Ensuring quality across branding, UX and digital experiences.\n\nThe role combined entrepreneurship, product thinking, design leadership and hands-on execution.',
       },
       {
         type: 'chips',

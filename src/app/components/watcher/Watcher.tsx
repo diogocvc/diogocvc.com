@@ -195,7 +195,7 @@ export function Watcher() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full flex justify-center md:absolute md:inset-0 md:pointer-events-none md:z-0 md:flex md:items-center md:justify-end"
+      className="relative w-full flex justify-center md:flex md:items-center md:justify-end"
     >
       <img
         ref={imgRef}

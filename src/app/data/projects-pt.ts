@@ -460,10 +460,8 @@ export const projectsPt: Project[] = [
     coverImage: emurgo01,
     content: [
       {
-        type: 'text',
-        title: 'Abordagem de Design',
-        content: 'O website precisava comunicar tecnologia blockchain complexa de forma acessível, mantendo credibilidade com públicos técnicos.',
-        images: [emurgo01],
+        type: 'video',
+        url: 'https://player.vimeo.com/video/278812370',
       },
     ],
   },
@@ -514,13 +512,13 @@ export const projectsPt: Project[] = [
       {
         type: 'text',
         title: 'O Produto',
-        content: 'Startup Kit empacotou múltiplos serviços especializados em um único produto projetado para fundadores de startups.\n\nEngajamentos típicos incluíam:\n\nIdentidade de marca\nSistema visual\nWebsite de marketing\nMensagens de produto\nAnimação explicativa\nAtivos de comunicação para investidores',
+        content: 'Startup Kit empacotou múltiplos serviços especializados em um único produto projetado para fundadores de startups.\n\nEngajamentos típicos incluíam:\n\n• Identidade de marca\n• Sistema visual\n• Website de marketing\n• Mensagens de produto\n• Animação explicativa\n• Ativos de comunicação para investidores',
         images: [startupkitBrandSystem],
       },
       {
         type: 'text',
         title: 'Meu Papel',
-        content: 'Como co-fundador, ajudei a moldar tanto a estratégia de negócio quanto o produto em si.\n\nIdentifiquei a oportunidade de mercado, defini o modelo de serviço produtizado, estruturei a jornada do cliente e liderei equipes de design multidisciplinares.',
+        content: 'Como co-fundador, ajudei a moldar tanto a estratégia de negócio quanto o produto em si.\n\nMinhas responsabilidades incluíam:\n\n• Identificar a oportunidade de mercado.\n• Definir o modelo de serviço produtizado.\n• Estruturar a jornada do cliente.\n• Liderar a estratégia de produto e comunicação.\n• Projetar soluções para clientes.\n• Liderar equipes multidisciplinares de design.\n• Garantir qualidade em branding, UX e experiências digitais.\n\nO papel combinava empreendedorismo, pensamento de produto, liderança de design e execução prática.',
       },
       {
         type: 'chips',

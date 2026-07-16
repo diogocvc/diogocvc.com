@@ -41,13 +41,17 @@ export function Navigation() {
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-8 py-6 flex items-center justify-between">
-        <Link to="/" className="font-medium tracking-tight hover:opacity-60 transition-opacity">
+        <Link
+          to={isPt ? '/br' : '/'}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="font-medium tracking-tight hover:opacity-60 transition-opacity"
+        >
           Diogo Carvalho
         </Link>
         <div className="flex items-center gap-6">
           <button
             onClick={toggleLocale}
-            className="text-sm hover:opacity-60 transition-opacity font-medium"
+            className="px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 bg-muted text-muted-foreground ring-1 ring-border hover:bg-accent hover:text-white"
           >
             {isPt ? 'EN' : 'PT'}
           </button>
