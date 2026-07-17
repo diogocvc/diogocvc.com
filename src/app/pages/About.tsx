@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { useLocation } from 'react-router';
-import { Download } from 'lucide-react';
+
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 
@@ -9,7 +9,7 @@ const experience = [
     company: 'Realio Network',
     role: 'Director of Product',
     rolePt: 'Diretor de Produto',
-    period: '2022–2025',
+    period: '2021–2025',
     description:
       'Led product strategy and design for a Web3 ecosystem focused on tokenized real-world assets, blockchain infrastructure, wallets and investor experiences.',
     descriptionPt:
@@ -17,9 +17,9 @@ const experience = [
   },
   {
     company: 'Contra Criativos',
-    role: 'Co-Founder & Design Director',
-    rolePt: 'Co-Fundador & Diretor de Design',
-    period: '2010–2022',
+    role: 'Partner & Strategy Director',
+    rolePt: 'Partner & Diretor de Estratégia',
+    period: '2015–Present',
     description:
       'Led multidisciplinary projects spanning branding, digital products, strategy, business design and innovation.',
     descriptionPt:
@@ -27,13 +27,33 @@ const experience = [
   },
   {
     company: 'Startup Kit',
-    role: 'Partner & Product Strategist',
-    rolePt: 'Sócio & Estrategista de Produto',
-    period: '2018–2022',
+    role: 'Co-founder & Strategy Director',
+    rolePt: 'Co-fundador & Diretor de Estratégia',
+    period: '2019–2021',
     description:
       'Collaborated with startups and technology companies on product strategy, UX design and growth initiatives.',
     descriptionPt:
       'Colaborei com startups e empresas de tecnologia em estratégia de produto, design UX e iniciativas de crescimento.',
+  },
+  {
+    company: 'FarmaJá',
+    role: 'Product Strategy & UX Consultant',
+    rolePt: 'Consultor de Estratégia de Produto & UX',
+    period: '2019–2021',
+    description:
+      'Led UX and product design for a pharmacy delivery and price comparison app.',
+    descriptionPt:
+      'Liderei UX e design de produto para um app de entrega de farmácia e comparação de preços.',
+  },
+  {
+    company: 'Brainn.co',
+    role: 'Engagement Manager / Product Design Lead',
+    rolePt: 'Engagement Manager / Líder de Design de Produto',
+    period: '2019–2020',
+    description:
+      'Design leadership role, bridging clients, designers, and delivery teams.',
+    descriptionPt:
+      'Liderança de design, conectando clientes, designers e equipes de entrega.',
   },
   {
     company: 'PING',
@@ -47,6 +67,27 @@ const experience = [
       'Apoiando o desenvolvimento e comercialização de uma tecnologia assistiva que ajuda pessoas cegas a administrar medicamentos de forma independente.',
   },
 ];
+
+const clientLogos = import.meta.glob('/src/imports/clients/*.svg', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>;
+
+const getNameFromPath = (path: string) => {
+  const name = path.split('/').pop()?.replace('.svg', '') ?? '';
+  const overrides: Record<string, string> = {
+    cvc: 'CVC',
+    sc: 'SC',
+    trst: 'TRST',
+  };
+  return overrides[name] ?? name.charAt(0).toUpperCase() + name.slice(1);
+};
+
+const clients = Object.entries(clientLogos).map(([path, logo]) => ({
+  name: getNameFromPath(path),
+  logo,
+}));
 
 const industries = [
   'Web3 & Blockchain',
@@ -206,6 +247,24 @@ export function About() {
             </div>
           </section>
 
+          {/* Clients */}
+          <section className="space-y-6">
+            <span className="eyebrow">{isPt ? 'Clientes' : 'Clients'}</span>
+            <h2 className="text-h1">
+              {isPt ? 'Empresas com que já trabalhei' : "Companies I've worked with"}
+            </h2>
+            <div className="flex flex-wrap gap-8 items-center">
+              {clients.map((client) => (
+                <img
+                  key={client.name}
+                  src={client.logo}
+                  alt={client.name}
+                  className="h-12 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                />
+              ))}
+            </div>
+          </section>
+
           {/* Contact */}
           <section className="space-y-6 pt-8">
             <div className="h-px bg-border" />
@@ -259,8 +318,7 @@ export function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Download className="w-5 h-5" />
-                  <span>{isPt ? 'Baixar CV' : 'Download CV'}</span>
+                  <span className="text-surface-0">{isPt ? 'Baixar CV' : 'Download CV'}</span>
                 </a>
               </Button>
             </div>
