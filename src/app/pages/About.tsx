@@ -3,6 +3,11 @@ import { useLocation } from 'react-router';
 
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '../components/ui/tooltip';
 
 const experience = [
   {
@@ -84,10 +89,25 @@ const getNameFromPath = (path: string) => {
   return overrides[name] ?? name.charAt(0).toUpperCase() + name.slice(1);
 };
 
-const clients = Object.entries(clientLogos).map(([path, logo]) => ({
-  name: getNameFromPath(path),
-  logo,
-}));
+const clientMeta: Record<string, { displayName: string; url: string }> = {
+  cartesi: { displayName: 'Cartesi', url: 'https://cartesi.io' },
+  cvc: { displayName: 'CVC', url: 'https://www.cvc.com.br/' },
+  emurgo: { displayName: 'Emurgo/Cardano', url: 'https://www.emurgo.io/' },
+  ferrum: { displayName: 'Ferrum Network', url: 'https://ferrum.network/' },
+  moura: { displayName: 'Baterias Moura', url: 'https://www.moura.com.br/' },
+  opslock: { displayName: 'Opslock', url: 'https://opslock.app/' },
+  realio: { displayName: 'Realio Network', url: 'https://realio.network/' },
+  sc: { displayName: 'Shuttle Control', url: 'https://shuttlecontrol.com/' },
+  trst: { displayName: 'Trst Inc.', url: 'https://trstinc.ca/' },
+  yazigi: { displayName: 'Yázigi', url: 'https://www.yazigi.com.br/' },
+};
+
+const clients = Object.entries(clientLogos).map(([path, logo]) => {
+  const name = getNameFromPath(path);
+  const filename = path.split('/').pop()?.replace('.svg', '') ?? '';
+  const meta = clientMeta[filename] ?? { displayName: name, url: '#' };
+  return { name, displayName: meta.displayName, logo, url: meta.url };
+});
 
 const industries = [
   'Web3 & Blockchain',
@@ -255,12 +275,25 @@ export function About() {
             </h2>
             <div className="flex flex-wrap gap-8 items-center">
               {clients.map((client) => (
-                <img
-                  key={client.name}
-                  src={client.logo}
-                  alt={client.name}
-                  className="h-24 w-auto opacity-80 hover:opacity-100 transition-opacity"
-                />
+                <Tooltip key={client.name}>
+                  <TooltipTrigger asChild>
+                    <a
+                      href={client.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-pointer"
+                    >
+                      <img
+                        src={client.logo}
+                        alt={client.name}
+                        className="h-24 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                      />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{client.displayName}</p>
+                  </TooltipContent>
+                </Tooltip>
               ))}
             </div>
           </section>
