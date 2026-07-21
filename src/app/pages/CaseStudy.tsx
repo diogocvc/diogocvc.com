@@ -109,11 +109,11 @@ export function CaseStudy({ projectId }: CaseStudyProps) {
           transition={{ duration: 1, delay: 0.2 }}
           className="mb-20"
         >
-          <div className="w-full aspect-[21/9] bg-muted overflow-hidden shadow-sm">
+          <div className="w-full overflow-hidden shadow-sm">
             <img
               src={project.coverImage}
               alt={project.title}
-              className="w-full h-full object-cover"
+              className="w-full"
             />
           </div>
         </motion.section>

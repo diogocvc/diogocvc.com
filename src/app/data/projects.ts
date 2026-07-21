@@ -664,7 +664,7 @@ export const projects: Project[] = [
       },
       {
         type: 'video',
-        url: 'https://player.vimeo.com/video/1211838573',
+        url: 'https://player.vimeo.com/video/1211838573?background=1',
       },
       {
         type: 'text',

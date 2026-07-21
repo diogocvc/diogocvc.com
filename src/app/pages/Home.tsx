@@ -261,11 +261,11 @@ function ProjectCard({ project, index, linkPrefix }: ProjectCardProps) {
       >
         <div className="space-y-8">
           {(project.cardImage || project.coverImage) && (
-            <div className="aspect-[16/9] bg-muted rounded-xl overflow-hidden shadow-sm transition-shadow duration-200 group-hover:shadow-md">
+            <div className="rounded-xl overflow-hidden shadow-sm transition-shadow duration-200 group-hover:shadow-md">
               <motion.img
                 src={project.cardImage || project.coverImage}
                 alt={project.title}
-                className="w-full h-full object-cover"
+                className="w-full"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.6, ease: [0.6, 0.01, 0.05, 0.95] }}
               />
