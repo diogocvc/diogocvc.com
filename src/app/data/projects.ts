@@ -58,6 +58,9 @@ import startupkitHeader from '../../imports/startupkit-header.png';
 import startupkitHero from '../../imports/project-startupkit-hero.webp';
 import startupkitBrandSystem from '../../imports/project-startupkit-brand-system.webp';
 
+// Novo Ciclo imports
+import novocicloImg from '../../imports/novociclo-interface.png';
+
 // Espremedor de Papel imports
 import espremedorImg from '../../imports/espremedor.png';
 
@@ -632,6 +635,51 @@ export const projects: Project[] = [
         type: 'text',
         title: 'Reflection',
         content: 'Looking back, Startup Kit was much more than a design business.\n\nIt was an exercise in product discovery.\n\nInstead of asking how we could deliver better projects, we asked how we could build a better product around the problems we solved repeatedly.\n\nThat shift—from custom execution to productized services—fundamentally shaped the way I approach product strategy today.\n\nIt reinforced a lesson that has stayed with me throughout my career:\n\nGreat products often begin by recognizing recurring customer needs before anyone else does.',
+      },
+    ],
+  },
+  {
+    id: 'novo-ciclo',
+    title: 'Novo Ciclo',
+    subtitle: 'An AI agent team documenting Brazil\'s road back to the World Cup',
+    year: '2026',
+    role: 'Product Owner, AI Systems & Product Design',
+    tags: ['Product Design', 'AI', 'Selected work'],
+    summary: 'An automated news aggregator where eight AI agents research, curate, write, and publish daily chapters about Brazil\'s national team journey toward the 2030 World Cup — with zero human intervention.',
+    coverImage: novocicloImg,
+    content: [
+      {
+        type: 'text',
+        content: 'Novo Ciclo is an automated news aggregator that tracks, day by day, the Brazilian national team\'s journey toward the 2030 World Cup. Every chapter is researched, selected, written, and published by a team of eight AI agents, with zero human intervention — from collection to publication.\n\nThe project is live at novociclo.xyz.',
+      },
+      {
+        type: 'text',
+        title: 'The starting point',
+        content: 'The project started with a sentence. After Brazil\'s elimination to Norway in the 2026 World Cup, coach Carlo Ancelotti summed up the moment: "It\'s not the end, it\'s the beginning of a new cycle." That line captured something I\'d already been feeling about my own work: after two decades building products, I wanted to test, in practice, how far AI could actually go in sustaining a product from end to end — not as an occasional assistant, but as a structural part of the team.\n\nI also knew that, on my own, I couldn\'t follow the national team as closely as I wanted to. Instead of dropping the idea, I designed a system that would do that following for me — reliably and automatically.',
+      },
+      {
+        type: 'text',
+        title: 'Approach: process before code',
+        content: 'Before writing a single line of code, I defined the requirements that would guide every technical and editorial decision in the product:\n\n• Operate autonomously, with no daily manual curation;\n• Use only trusted journalistic sources (Globo Esporte, UOL Esporte, ESPN Brasil, CBF, FIFA);\n• Curate the news, never generate it — the product doesn\'t write reporting, it organizes and contextualizes journalism that already exists;\n• Always link back to the original story, never reproduce content;\n• Structure information into daily chapters and weeks, building a running diary of the cycle through 2030.\n\nThese requirements worked as the product\'s design system: any new agent, prompt, or feature has to respect them before it ships. That discipline — clear rules set before automation, not after — is what separates an AI experiment from a product that can stand on its own.',
+      },
+      {
+        type: 'video',
+        url: 'https://player.vimeo.com/video/1211838573',
+      },
+      {
+        type: 'text',
+        title: 'Architecture: eight agents, one pipeline',
+        content: 'I built a team of eight AI agents, each with a single responsibility in the editorial pipeline: research, collect, filter for relevance, and write the day\'s headline and summary. The flow runs end to end with no human checkpoint, publishing the daily chapter automatically at 6pm.\n\nContent is generated as static files, versioned inside the project\'s own repository — the product\'s editorial history is, literally, its code history. The stack (Next.js, TypeScript, Tailwind CSS) runs on Vercel, with automated deployment via GitHub Actions on every new chapter.',
+      },
+      {
+        type: 'text',
+        title: 'My role',
+        content: 'I worked across the full lifecycle: defined the problem and product requirements, designed the agent architecture and each agent\'s individual responsibilities, orchestrated the collect-curate-publish pipeline, and led the implementation alongside AI coding tools. It was a rare chance to own an entire product flow — from pixels to code — using AI not as a shortcut, but as part of the product team.',
+      },
+      {
+        type: 'text',
+        title: 'Outcome',
+        content: 'Novo Ciclo is live, publishing daily chapters in a fully automated way since day one of the national team\'s new cycle. The product delivers value without competing with sports journalism: it exists because serious sports journalism exists, and it drives traffic back to those sources instead of replacing them.',
       },
     ],
   },

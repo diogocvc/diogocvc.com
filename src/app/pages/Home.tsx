@@ -19,6 +19,7 @@ const FILTER_TAGS = [
   'Signature Framework',
   'Service Design',
   'Entrepreneurship',
+  'AI',
   'All',
 ];
 

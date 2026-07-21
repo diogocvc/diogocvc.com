@@ -1,5 +1,8 @@
 import type { Project, MetricsItem, LinkItem } from './projects';
 
+// Novo Ciclo imports
+import novocicloImg from '../../imports/novociclo-interface.png';
+
 // Espremedor de Papel imports
 import espremedorImg from '../../imports/espremedor.png';
 
@@ -535,6 +538,51 @@ export const projectsPt: Project[] = [
         type: 'text',
         title: 'Impacto',
         content: 'Startup Kit demonstrou que problemas recorrentes de clientes podem se tornar produtos.\n\nAo transformar uma oferta fragmentada em uma solução estruturada, reduzimos a complexidade para fundadores enquanto criávamos um modelo de negócio mais escalável.',
+      },
+    ],
+  },
+  {
+    id: 'novo-ciclo',
+    title: 'Novo Ciclo',
+    subtitle: 'Um time de agentes de IA documentando a volta do Brasil rumo à Copa do Mundo',
+    year: '2026',
+    role: 'Product Owner, AI Systems & Product Design',
+    tags: ['Product Design', 'AI', 'Selected work'],
+    summary: 'Um agregador de notícias automatizado onde oito agentes de IA pesquisam, selecionam, escrevem e publicam capítulos diários sobre a jornada da seleção brasileira até a Copa do Mundo de 2030 — sem intervenção humana.',
+    coverImage: novocicloImg,
+    content: [
+      {
+        type: 'text',
+        content: 'Novo Ciclo é um agregador de notícias automatizado que acompanha, dia após dia, a jornada da seleção brasileira em direção à Copa do Mundo de 2030. Cada capítulo é pesquisado, selecionado, escrito e publicado por um time de oito agentes de IA, com zero intervenção humana — da coleta à publicação.\n\nO projeto está disponível em novociclo.xyz.',
+      },
+      {
+        type: 'text',
+        title: 'O ponto de partida',
+        content: 'O projeto começou com uma frase. Após a eliminação do Brasil para a Noruega na Copa do Mundo de 2026, o técnico Carlo Ancelotti resumiu o momento: "Não é o fim, é o começo de um novo ciclo." Essa frase capturou algo que eu já vinha sentindo sobre meu próprio trabalho: depois de duas décadas construindo produtos, queria testar, na prática, até onde a IA poderia sustentar um produto de ponta a ponta — não como assistente ocasional, mas como parte estrutural do time.\n\nEu também sabia que, sozinho, não conseguiria acompanhar a seleção tão de perto quanto gostaria. Em vez de abandonar a ideia, projetei um sistema que faria esse acompanhamento por mim — de forma confiável e automática.',
+      },
+      {
+        type: 'text',
+        title: 'Abordagem: processo antes do código',
+        content: 'Antes de escrever uma linha de código, defini os requisitos que guiariam cada decisão técnica e editorial do produto:\n\n• Operar de forma autônoma, sem curadoria manual diária;\n• Usar apenas fontes jornalísticas confiáveis (Globo Esporte, UOL Esporte, ESPN Brasil, CBF, FIFA);\n• Curar as notícias, nunca gerá-las — o produto não escreve reportagens, ele organiza e contextualiza o jornalismo que já existe;\n• Sempre linkar para a matéria original, nunca reproduzir conteúdo;\n• Estruturar informações em capítulos e semanas diários, construindo um diário da caminhada até 2030.\n\nEsses requisitos funcionaram como o sistema de design do produto: qualquer novo agente, prompt ou funcionalidade precisa respeitá-los antes de ser lançado. Essa disciplina — regras claras definidas antes da automação, não depois — é o que separa um experimento de IA de um produto que pode se sustentar sozinho.',
+      },
+      {
+        type: 'video',
+        url: 'https://player.vimeo.com/video/1211838573',
+      },
+      {
+        type: 'text',
+        title: 'Arquitetura: oito agentes, um pipeline',
+        content: 'Montei um time de oito agentes de IA, cada um com uma única responsabilidade no pipeline editorial: pesquisar, coletar, filtrar por relevância e escrever a manchete e o resumo do dia. O fluxo roda de ponta a ponta sem checkpoint humano, publicando o capítulo diário automaticamente às 18h.\n\nO conteúdo é gerado como arquivos estáticos, versionados dentro do próprio repositório do projeto — a história editorial do produto é, literalmente, sua história de código. A stack (Next.js, TypeScript, Tailwind CSS) roda na Vercel, com deploy automatizado via GitHub Actions a cada novo capítulo.',
+      },
+      {
+        type: 'text',
+        title: 'Meu papel',
+        content: 'Trabalhei em todo o ciclo de vida: defini o problema e os requisitos do produto, projetei a arquitetura dos agentes e as responsabilidades individuais de cada um, orquestrei o pipeline de coleta, curadoria e publicação, e liderei a implementação junto com ferramentas de codificação com IA. Foi uma oportunidade rara de assumir um fluxo completo de produto — dos pixels ao código — usando IA não como atalho, mas como parte do time de produto.',
+      },
+      {
+        type: 'text',
+        title: 'Resultado',
+        content: 'O Novo Ciclo está no ar, publicando capítulos diários de forma totalmente automatizada desde o primeiro dia do novo ciclo da seleção. O produto entrega valor sem competir com o jornalismo esportivo: ele existe porque o jornalismo esportivo sério existe, e direciona tráfego de volta para essas fontes em vez de substituí-las.',
       },
     ],
   },

@@ -6,6 +6,7 @@ import { CaseStudy } from "./pages/CaseStudy";
 import { NotFound } from "./pages/NotFound";
 
 const caseIds = [
+  "novo-ciclo",
   "realio",
   "espremedor-de-papel",
   "unifyre",
